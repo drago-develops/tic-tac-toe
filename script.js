@@ -13,9 +13,24 @@ function Gameboard() {
         }
         return false; // position aleready taken
     }
-    
 
-    return {board, placeMark, displayBoard}
+    //Method to collect players positions on board
+    const playersPositions = (board) => {
+        let setOfPositionsX = []
+        let setOfPositionsO = []
+
+        //checks index position of each signs and puts it into an array.
+        for (let i = 0; i < board.length ; i++){
+            if (board[i] === 'X'){
+                setOfPositionsX.push(i);
+            } else if (board[i] === 'O'){
+                setOfPositionsO.push(i);
+            }
+        }
+        return {setOfPositionsX, setOfPositionsO};
+    }
+
+    return {board, placeMark, displayBoard, playersPositions}
 }
 
 function createPlayer(name) {

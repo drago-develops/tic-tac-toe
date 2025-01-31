@@ -30,7 +30,31 @@ function Gameboard() {
         return {setOfPositionsX, setOfPositionsO};
     }
 
-    return {board, placeMark, displayBoard, playersPositions}
+    //method upon calling checks if there is a match
+    const checkWinnigPositions = (board, playerSign) =>{
+        //all possible combinations to win the game in 3x3 matrix 
+        let winningCombinations = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ]
+        //using Array.some() to check if any of the combination are present on the board
+        //then using Array.every to check if each element index(ed) matches the sign and position.
+        //returns true if winning match found and false otherwise. 
+        return winningCombinations.some(combinations => {
+            return combinations.every(index =>{
+                return board[index] === playerSign;
+            })
+        }) 
+        
+    }
+
+    return {board, placeMark, displayBoard, playersPositions, checkWinnigPositions}
 }
 
 function createPlayer(name) {

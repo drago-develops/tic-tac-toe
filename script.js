@@ -54,7 +54,16 @@ function Gameboard() {
         
     }
 
-    return {board, placeMark, displayBoard, playersPositions, checkWinnigPositions}
+    //method to check for a draw
+    const checkDraw = (board) => {
+        //examines if each element in the array is not null value;
+        //if true then returns true if any null value present returns false
+        return board.every(element => {
+            return !(element === null);
+        })        
+    }
+
+    return {board, placeMark, displayBoard, playersPositions, checkWinnigPositions, checkDraw}
 }
 
 function createPlayer(name) {

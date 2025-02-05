@@ -66,8 +66,34 @@ function Gameboard() {
     return {board, placeMark, displayBoard, playersPositions, checkWinnigPositions, checkDraw}
 }
 
-function createPlayer(name) {
-    const playerName = name;
+//this method will control flow of the game
+function gameController(
+    playerOne = 'PlayerX',
+    playerTwo = 'PlayerO'
+){
+    const players = [
+        {
+            name: playerOne,
+            sign: X
+        },
+        {
+            name: playerTwo,
+            sign: O
+        }
+    ]
 
-    return {playerName}
+    let activePlayer = players[0];
+    
+    //method to control the turns between two players
+    const switchPlayerTurn = () => {
+        activePlayer = activePlayer === players[0] ? players[1] : players[0];
+    }
+}
+
+function createPlayer(name, sign) {
+    const playerName = name;
+    const playerSign = sign
+    
+
+    return {playerName, playerSign}
 }

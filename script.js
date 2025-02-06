@@ -100,16 +100,18 @@ function gameController(
         game.placeMark(position, getActivePlayer().sign);
         if (game.checkWinnigPositions(myBoard, 'X') === true) {
             stopTheGame();
-            console.log('The winner it X');
+            console.log('The winner is X');
         } else if (game.checkWinnigPositions(myBoard, 'O') === true) {
             stopTheGame();
-            console.log('The winner it O')
+            console.log('The winner is O')
         } else if (game.checkDraw(myBoard) === true){
             stopTheGame();
             console.log('It is a draw')
+        } else {
+            switchPlayerTurn();
+            nextRound();
         }
-        switchPlayerTurn();
-        nextRound();
+        
     }
 
     //print initial round

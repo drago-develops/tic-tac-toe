@@ -74,11 +74,11 @@ function gameController(
     const players = [
         {
             name: playerOne,
-            sign: X
+            sign: 'X'
         },
         {
             name: playerTwo,
-            sign: O
+            sign: 'O'
         }
     ]
 
@@ -88,6 +88,38 @@ function gameController(
     const switchPlayerTurn = () => {
         activePlayer = activePlayer === players[0] ? players[1] : players[0];
     }
+    const getActivePlayer = () => activePlayer;
+
+    const nextRound = () => {
+        console.log(game.displayBoard()); //to see the game board in the console
+        console.log(`${getActivePlayer().name} turn, please use ${getActivePlayer().sign} to mark your position`)
+    }
+    //getting position from the player which they want to take and marking it.
+    //simutainesly checking for win of either player or draw.
+    const playRound = (position) => {
+        game.placeMark(position, getActivePlayer().sign);
+        if (game.checkWinnigPositions(myBoard, 'X') === true) {
+            stopTheGame();
+            console.log('The winner it X');
+        } else if (game.checkWinnigPositions(myBoard, 'O') === true) {
+            stopTheGame();
+            console.log('The winner it O')
+        } else if (game.checkDraw(myBoard) === true){
+            stopTheGame();
+            console.log('It is a draw')
+        }
+        switchPlayerTurn();
+        nextRound();
+    }
+
+    //print initial round
+    nextRound();
+
+    const stopTheGame = () => {
+        console.log('End of the game')
+    }
+
+    return{switchPlayerTurn, getActivePlayer, playRound, stopTheGame, nextRound}
 }
 
 function createPlayer(name, sign) {
@@ -97,3 +129,7 @@ function createPlayer(name, sign) {
 
     return {playerName, playerSign}
 }
+
+const game = Gameboard()
+const myBoard = game.board
+const myGame = gameController();

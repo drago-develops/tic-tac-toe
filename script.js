@@ -10,8 +10,11 @@ function Gameboard() {
         if(board[position] === null ) {
             board[position] = mark;
             return true; //Mark placed succefully
-        }
-        return false; // position aleready taken
+        } else{
+            console.log('position aleready taken')
+            myGame.switchPlayerTurn(); //Prevent invalid move: revert turn if position is already taken or pressed accidentally.
+            return false; // position aleready taken            
+        }        
     }
 
     //Method to collect players positions on board

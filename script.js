@@ -1,3 +1,16 @@
+//event listeners for the fields/buttons.
+const fields = document.querySelectorAll('.fields')
+
+//each of the buttons receives an eventListener that will get the
+//id value of each button and feed that number into game (playRound)
+fields.forEach((element) => {
+    element.addEventListener('click', (event) =>{
+        const fieldSelected = event.target.id;
+        console.log(fieldSelected);
+        myGame.playRound(fieldSelected)
+    });
+});
+
 //Factory function to create Gameboard object.
 function Gameboard() {
     //private gameboard array

@@ -124,12 +124,15 @@ function gameController(
         //when button pressed then below line adds sign of the current player to the field.
         document.getElementById(`${buttonPress.getFieldSelected()}`).innerHTML = getActivePlayer().sign;
         if (game.checkWinnigPositions(myBoard, 'X') === true) {
+            document.getElementById('message').innerHTML = 'winner is X';
             stopTheGame();
             console.log('The winner is X');
         } else if (game.checkWinnigPositions(myBoard, 'O') === true) {
+            document.getElementById('message').innerHTML = 'winner is O';
             stopTheGame();
             console.log('The winner is O')
         } else if (game.checkDraw(myBoard) === true){
+            document.getElementById('message').innerHTML = 'it is a draw';
             stopTheGame();
             console.log('It is a draw')
         } else {

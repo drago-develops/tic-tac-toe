@@ -26,6 +26,8 @@ body{
 }
 button{
     box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 8px 25px 0 rgba(0,0,0,0.19);
+    font-size: 3em;
+    font-weight: 900;
 }
 
 button:hover{

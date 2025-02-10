@@ -3,13 +3,20 @@ const fields = document.querySelectorAll('.fields')
 
 //each of the buttons receives an eventListener that will get the
 //id value of each button and feed that number into game (playRound)
-fields.forEach((element) => {
-    element.addEventListener('click', (event) =>{
-        const fieldSelected = event.target.id;
-        console.log(fieldSelected);
-        myGame.playRound(fieldSelected)
+const buttonPress = (function () {
+    let fieldSelected;
+    fields.forEach((element) => {
+        element.addEventListener('click', (event) => {
+            fieldSelected = event.target.id;
+            console.log(fieldSelected);
+            myGame.playRound(fieldSelected);
+        });
     });
-});
+    return{
+        getFieldSelected: () => fieldSelected
+    };
+})();
+
 
 //Factory function to create Gameboard object.
 function Gameboard() {
@@ -114,6 +121,8 @@ function gameController(
     //simutainesly checking for win of either player or draw.
     const playRound = (position) => {
         game.placeMark(position, getActivePlayer().sign);
+        //when button pressed then below line adds sign of the current player to the field.
+        document.getElementById(`${buttonPress.getFieldSelected()}`).innerHTML = getActivePlayer().sign;
         if (game.checkWinnigPositions(myBoard, 'X') === true) {
             stopTheGame();
             console.log('The winner is X');

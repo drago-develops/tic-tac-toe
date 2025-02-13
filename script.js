@@ -147,6 +147,11 @@ function gameController(
 
     const stopTheGame = () => {
         console.log('End of the game')
+        const button = document.querySelectorAll('.fields')
+        button.forEach((element) => {
+            element.disabled = true;
+        })
+        return {buttonDisabler: () => button}
     }
 
     return{switchPlayerTurn, getActivePlayer, playRound, stopTheGame, nextRound}

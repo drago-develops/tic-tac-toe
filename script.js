@@ -166,7 +166,8 @@ function gameController(
         restartButton.textContent = 'restart';
         restartButton.setAttribute('id', 'restart')
         restartButton.setAttribute('onclick', 'myGame.newGame()') //once button clicked it invokes newGame() which resets and restarts game for another round.
-        document.body.appendChild(restartButton);
+        const buttonPlacement = document.getElementById('restartButtonMessage')
+        buttonPlacement.appendChild(restartButton);
         return {
             buttonDisabler: () => button,
             restartButton: () => restartButton

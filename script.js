@@ -23,6 +23,15 @@ function Gameboard() {
     //private gameboard array
     let board = Array(9).fill(null);
 
+    //upon invoking it 'cleans' internal board game of any signs so that game can be played again.
+    const newBoard = (board) => {
+        for (i = 0; i < board.length; i++){
+            if(!(board[i] === null)){
+                board[i] = null;
+            }
+        }
+    }
+
     const displayBoard = () => board; //to display board in the console
 
     //Method to place a mark on the board
@@ -86,7 +95,7 @@ function Gameboard() {
         })        
     }
 
-    return {board, placeMark, displayBoard, playersPositions, checkWinnigPositions, checkDraw}
+    return {board, placeMark, displayBoard, playersPositions, checkWinnigPositions, checkDraw, newBoard}
 }
 
 //this method will control flow of the game
@@ -145,16 +154,36 @@ function gameController(
     //print initial round
     nextRound();
 
+    //method to be invoked once game has concluded 
     const stopTheGame = () => {
         console.log('End of the game')
         const button = document.querySelectorAll('.fields')
+        //handing each button a disabled class
         button.forEach((element) => {
             element.disabled = true;
         })
-        return {buttonDisabler: () => button}
+        const restartButton = document.createElement('button'); //adds restart button for another game
+        restartButton.textContent = 'restart';
+        restartButton.setAttribute('id', 'restart')
+        restartButton.setAttribute('onclick', 'myGame.newGame()') //once button clicked it invokes newGame() which resets and restarts game for another round.
+        document.body.appendChild(restartButton);
+        return {
+            buttonDisabler: () => button,
+            restartButton: () => restartButton
+        }
     }
 
-    return{switchPlayerTurn, getActivePlayer, playRound, stopTheGame, nextRound}
+    const newGame = () =>{
+        document.getElementById('message').innerHTML = ''; //removes result message of a previous round 
+        game.newBoard(myBoard); //resets inteernal game-board for rematch
+        const button = document.querySelectorAll('.fields') //gets each button.field and enables it and removes any marks from UI board.
+        button.forEach((element) => {
+            element.disabled = false;
+            element.innerHTML = '';
+        })
+        document.getElementById('restart').remove() //
+    }
+    return{switchPlayerTurn, getActivePlayer, playRound, stopTheGame, nextRound, newGame}
 }
 
 function createPlayer(name, sign) {

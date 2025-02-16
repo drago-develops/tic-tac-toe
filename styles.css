@@ -4,7 +4,7 @@ body{
     background-color: #dfd3c3;
     display: flex;
     flex-flow: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     font-size: xx-large;
     font-family: 'Courier New', Courier, monospace;
@@ -39,6 +39,9 @@ button:hover{
     text-align: center;
     height: Clamp(30px, 7vh, 100px);
     width: 75vw;
+    margin: 5px;
+    font-size: 70%;
+    font-weight: bold;
 }
 #restart{
     text-align: center;

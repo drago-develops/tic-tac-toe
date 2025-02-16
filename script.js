@@ -126,7 +126,7 @@ function gameController(
         console.log(game.displayBoard()); //to see the game board in the console
         //getting message div clear of any previous text and adding current player move request
         document.getElementById('message').innerHTML = '';
-        document.getElementById('message').innerHTML = `${getActivePlayer().name} turn, please use ${getActivePlayer().sign} to mark your position`;
+        document.getElementById('message').innerHTML = `${getActivePlayer().name} turn, please use ${getActivePlayer().sign} to take position`;
         console.log(`${getActivePlayer().name} turn, please use ${getActivePlayer().sign} to mark your position`)
     }
     
@@ -137,11 +137,11 @@ function gameController(
         //when button pressed then below line adds sign of the current player to the field.
         document.getElementById(`${buttonPress.getFieldSelected()}`).innerHTML = getActivePlayer().sign;
         if (game.checkWinnigPositions(myBoard, 'X') === true) {
-            document.getElementById('message').innerHTML = 'winner is X';
+            document.getElementById('message').innerHTML = 'The winner is X';
             stopTheGame();
             console.log('The winner is X');
         } else if (game.checkWinnigPositions(myBoard, 'O') === true) {
-            document.getElementById('message').innerHTML = 'winner is O';
+            document.getElementById('message').innerHTML = 'The winner is O';
             stopTheGame();
             console.log('The winner is O')
         } else if (game.checkDraw(myBoard) === true){

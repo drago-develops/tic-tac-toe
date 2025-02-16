@@ -46,22 +46,6 @@ function Gameboard() {
         }        
     }
 
-    //Method to collect players positions on board
-    const playersPositions = (board) => {
-        let setOfPositionsX = []
-        let setOfPositionsO = []
-
-        //checks index position of each signs and puts it into an array.
-        for (let i = 0; i < board.length ; i++){
-            if (board[i] === 'X'){
-                setOfPositionsX.push(i);
-            } else if (board[i] === 'O'){
-                setOfPositionsO.push(i);
-            }
-        }
-        return {setOfPositionsX, setOfPositionsO};
-    }
-
     //method upon calling checks if there is a match
     const checkWinnigPositions = (board, playerSign) =>{
         //all possible combinations to win the game in 3x3 matrix 
@@ -95,7 +79,7 @@ function Gameboard() {
         })        
     }
 
-    return {board, placeMark, displayBoard, playersPositions, checkWinnigPositions, checkDraw, newBoard}
+    return {board, placeMark, displayBoard, checkWinnigPositions, checkDraw, newBoard}
 }
 
 //this method will control flow of the game

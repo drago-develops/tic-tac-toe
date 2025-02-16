@@ -124,8 +124,12 @@ function gameController(
 
     const nextRound = () => {
         console.log(game.displayBoard()); //to see the game board in the console
+        //getting message div clear of any previous text and adding current player move request
+        document.getElementById('message').innerHTML = '';
+        document.getElementById('message').innerHTML = `${getActivePlayer().name} turn, please use ${getActivePlayer().sign} to mark your position`;
         console.log(`${getActivePlayer().name} turn, please use ${getActivePlayer().sign} to mark your position`)
     }
+    
     //getting position from the player which they want to take and marking it.
     //simutainesly checking for win of either player or draw.
     const playRound = (position) => {
